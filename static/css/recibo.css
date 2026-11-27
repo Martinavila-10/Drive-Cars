@@ -1,0 +1,156 @@
+
+.recibo-contenedor {
+    max-width: 950px;
+    margin: 45px auto;
+    padding: 20px;
+    color: #fff;
+}
+
+.recibo-documento {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 35px;
+}
+
+.recibo-encabezado {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.recibo-encabezado h1 {
+    font-size: 32px;
+    letter-spacing: 3px;
+}
+
+.recibo-encabezado h1 span {
+    color: #e50914;
+}
+
+.recibo-encabezado h2 {
+    margin: 15px 0 8px;
+}
+
+.recibo-encabezado p {
+    color: #aaa;
+}
+
+.recibo-informacion {
+    margin: 25px 0;
+    line-height: 2;
+}
+
+.recibo-subtitulo {
+    margin: 25px 0 15px;
+}
+
+.recibo-tabla-contenedor {
+    overflow-x: auto;
+}
+
+.recibo-tabla {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 550px;
+}
+
+.recibo-tabla th,
+.recibo-tabla td {
+    padding: 14px;
+    border: 1px solid #444;
+    text-align: left;
+}
+
+.recibo-tabla th {
+    background: #292929;
+}
+
+.recibo-tabla td {
+    color: #ddd;
+}
+
+.recibo-total {
+    text-align: right;
+    margin: 25px 0;
+}
+
+.recibo-total h2 {
+    color: #fff;
+}
+
+.recibo-aviso {
+    padding: 15px;
+    background: #292929;
+    color: #ffb0b0;
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.recibo-botones {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.btn-imprimir,
+.btn-regresar {
+    padding: 12px 22px;
+    border: none;
+    border-radius: 7px;
+    background: #e50914;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-regresar {
+    background: #444;
+}
+
+.btn-imprimir:hover {
+    background: #b80710;
+}
+
+.btn-regresar:hover {
+    background: #555;
+}
+
+@media print {
+    body {
+        background: white !important;
+        color: black !important;
+    }
+
+    .recibo-contenedor {
+        margin: 0;
+        padding: 0;
+    }
+
+    .recibo-documento {
+        background: white;
+        color: black;
+        border: none;
+    }
+
+    .recibo-encabezado h1,
+    .recibo-encabezado h2,
+    .recibo-informacion,
+    .recibo-tabla td,
+    .recibo-total h2 {
+        color: black;
+    }
+
+    .recibo-botones {
+        display: none;
+    }
+
+    .recibo-aviso {
+        background: white;
+        color: black;
+        border: 1px solid #ccc;
+    }
+}

@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de usuarios | Auto Drive</title>
+    <link rel="stylesheet" href="{% static 'css/usuarios.css' %}">
+</head>
+<body>
+    <main class="usuarios-contenedor">
+        <section class="usuarios-card">
+
+            <div class="usuarios-logo">AUTO <span>DRIVE</span></div>
+
+            <p class="usuarios-subtitulo">PANEL DE ADMINISTRACIÓN</p>
+            <h1>Usuarios registrados</h1>
+
+            <p class="usuarios-descripcion">
+                Administra las cuentas registradas en Auto Drive.
+                Puedes consultar sus datos, editar su información o eliminar cuentas.
+            </p>
+
+            <div class="usuarios-tabla-contenedor">
+                <table class="usuarios-tabla">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Usuario</th>
+                            <th>Correo electrónico</th>
+                            <th>Fecha de registro</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for usuario in usuarios %}
+                        <tr>
+                            <td>{{ usuario.id }}</td>
+                            <td>{{ usuario.username }}</td>
+                            <td>{{ usuario.email|default:"Sin correo" }}</td>
+                            <td>{{ usuario.date_joined|date:"d/m/Y H:i" }}</td>
+
+                            <td>
+                                {% if usuario.is_active %}
+                                    Activo
+                                {% else %}
+                                    Inactivo
+                                {% endif %}
+                            </td>
+
+                            <td>
+                                <div class="usuarios-acciones">
+                                    <a class="usuarios-boton"
+                                       href="{% url 'editar_usuario' usuario.id %}">
+                                        Editar
+                                    </a>
+
+                                    {% if not usuario.is_superuser %}
+                                    <form method="GET"
+                                        action="{% url 'eliminar_usuario' usuario.id %}"
+                                        style="display: inline;">
+                                        <button type="submit">
+                                            Eliminar
+                                        </button>
+                                    </form>
+                                    {% endif %}
+                                </div>
+                            </td>
+                        </tr>
+
+                        {% empty %}
+                        <tr>
+                            <td colspan="6">
+                                No hay usuarios registrados.
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="usuarios-pie">
+                <a href="{% url 'inicio' %}">← Volver al inicio</a>
+            </div>
+
+        </section>
+    </main>
+</body>
+</html>

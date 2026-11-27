@@ -1,0 +1,24 @@
+
+# Entornos virtuales
+venv/
+env/
+miSitio/
+
+# Archivos de Python
+__pycache__/
+*.py[cod]
+
+# Variables y claves privadas
+.env
+.env.*
+
+# Base de datos local
+db.sqlite3
+db.sqlite3-journal
+
+# Archivos de configuración local
+*.log
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db

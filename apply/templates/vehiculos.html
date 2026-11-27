@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Drive Cars | Vehículos{% endblock %}
+
+{% block content %}
+
+<section class="titulo-pagina">
+    <p>DRIVE CARS</p>
+    <h1>Nuestros vehículos</h1>
+    <span>Explora nuestra selección de automóviles.</span>
+</section>
+
+<section class="seccion">
+    <div class="tarjetas">
+
+        {% for vehiculo in vehiculos %}
+        <div class="card">
+
+            <div class="imagen-auto">
+                {% if vehiculo.imagen %}
+                <img
+                    src="{% static vehiculo.imagen %}"
+                    alt="{{ vehiculo.marca }} {{ vehiculo.modelo }}"
+                    style="width: 100%; height: 100%; object-fit: cover;"
+                >
+                {% endif %}
+            </div>
+
+            <div class="card-contenido">
+
+                <h3>{{ vehiculo.marca }} {{ vehiculo.modelo }}</h3>
+
+                <p>{{ vehiculo.anio }} • {{ vehiculo.categoria }}</p>
+
+                <strong>${{ vehiculo.precio }} MXN</strong>
+
+                <p>{{ vehiculo.descripcion }}</p>
+
+                <p class="existencias">
+                    {% if vehiculo.stock > 0 %}
+                        Disponibles: {{ vehiculo.stock }}
+                    {% else %}
+                        Sin existencias
+                    {% endif %}
+                </p>
+
+                {% if vehiculo.stock > 0 %}
+                <form method="POST" action="{% url 'agregar_carrito' vehiculo.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-agregar-carrito">
+                        Agregar al carrito
+                    </button>
+                </form>
+                {% else %}
+                <button class="btn-agregar-carrito" disabled>
+                    No disponible
+                </button>
+                {% endif %}
+
+            </div>
+
+        </div>
+        {% empty %}
+        <p>Aún no hay vehículos registrados.</p>
+        {% endfor %}
+
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/script.js' %}"></script>
+{% endblock %}

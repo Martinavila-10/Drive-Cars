@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Pago | Drive Cars{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/pago.css' %}">
+
+<main class="pago-contenedor">
+
+    <section class="pago-card">
+
+        <h1>Finalizar compra</h1>
+
+        <p class="pago-descripcion">
+            Estás realizando una compra de demostración.
+            No se efectuará ningún cobro real.
+        </p>
+
+        <form method="POST" action="{% url 'finalizar_compra' %}">
+
+            {% csrf_token %}
+
+            {% if errores %}
+                <div class="errores-pago">
+                    {% for error in errores %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <div class="campo-pago">
+
+                <label for="titular">Nombre del titular</label>
+
+                <input
+                    type="text"
+                    id="titular"
+                    name="titular"
+                    placeholder="Nombre de demostración"
+                    maxlength="100"
+                    autocomplete="off"
+                    required
+                >
+
+            </div>
+
+            <div class="campo-pago">
+
+                <label for="numero_tarjeta">
+                    Número de tarjeta de prueba
+                </label>
+
+                <input
+                    type="text"
+                    id="numero_tarjeta"
+                    name="numero_tarjeta"
+                    placeholder="16 dígitos"
+                    inputmode="numeric"
+                    autocomplete="off"
+                    maxlength="16"
+                    minlength="16"
+                    pattern="[0-9]{16}"
+                    title="Introduce exactamente 16 dígitos."
+                    required
+                >
+
+            </div>
+
+            <div class="pago-fila">
+
+                <div class="campo-pago">
+
+                    <label for="vencimiento">Vencimiento</label>
+
+                    <input
+                        type="text"
+                        id="vencimiento"
+                        name="vencimiento"
+                        placeholder="MM/AA"
+                        inputmode="numeric"
+                        maxlength="5"
+                        pattern="(0[1-9]|1[0-2])/[0-9]{2}"
+                        title="Utiliza el formato MM/AA."
+                        autocomplete="off"
+                        required
+                    >
+
+                </div>
+
+                <div class="campo-pago">
+
+                    <label for="cvv">CVV de prueba</label>
+
+                    <input
+                        type="password"
+                        id="cvv"
+                        name="cvv"
+                        placeholder="3 dígitos"
+                        inputmode="numeric"
+                        maxlength="3"
+                        minlength="3"
+                        pattern="[0-9]{3}"
+                        title="Introduce exactamente 3 dígitos."
+                        autocomplete="off"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+            <p class="aviso-pago">
+                Utiliza únicamente datos ficticios. Nunca introduzcas
+                información de una tarjeta real.
+            </p>
+
+            <button type="submit" class="btn-pagar">
+                Confirmar pago simulado
+            </button>
+
+        </form>
+
+        <a href="{% url 'carrito' %}" class="volver-carrito">
+            Regresar al carrito
+        </a>
+
+    </section>
+
+</main>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/pago.js' %}"></script>
+{% endblock %}

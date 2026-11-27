@@ -1,0 +1,247 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0.94)),
+        url("../img/hero.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: #0b0b0b;
+    color: #ffffff;
+    min-height: 100vh;
+}
+
+.usuarios-contenedor {
+    width: 100%;
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 50px 20px;
+}
+
+.usuarios-card {
+    background: rgba(21, 21, 21, 0.96);
+    border: 1px solid #292929;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65);
+    padding: 35px;
+    animation: aparecer 0.5s ease;
+}
+
+.usuarios-logo {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin-bottom: 25px;
+}
+
+.usuarios-logo span {
+    color: #e50909;
+}
+
+.usuarios-subtitulo {
+    color: #e50909;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+}
+
+.usuarios-card h1 {
+    font-size: 30px;
+    margin-bottom: 25px;
+}
+
+.usuarios-descripcion {
+    color: #999999;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.usuarios-tabla-contenedor {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.usuarios-tabla {
+    width: 100%;
+    border-collapse: collapse;
+    background: #111111;
+}
+
+.usuarios-tabla th {
+    background: #1b1b1b;
+    color: #e50909;
+    text-align: left;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.usuarios-tabla th,
+.usuarios-tabla td {
+    padding: 15px;
+    border: 1px solid #292929;
+}
+
+.usuarios-tabla td {
+    color: #dddddd;
+    font-size: 13px;
+}
+
+.usuarios-tabla tr:hover td {
+    background: #1c1c1c;
+}
+
+.usuarios-boton,
+.usuarios-tabla button {
+    display: inline-block;
+    padding: 10px 14px;
+    border: 1px solid #e50909;
+    background: #e50909;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.usuarios-boton:hover,
+.usuarios-tabla button:hover {
+    background: transparent;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.usuarios-boton-secundario {
+    background: transparent;
+    border: 1px solid #444444;
+    color: #cccccc;
+}
+
+.usuarios-boton-secundario:hover {
+    border-color: #e50909;
+}
+
+.usuarios-formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 550px;
+}
+
+.usuarios-formulario label {
+    color: #aaaaaa;
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+.usuarios-formulario input,
+.usuarios-formulario select,
+.usuarios-formulario textarea {
+    width: 100%;
+    padding: 14px;
+    background: #0f0f0f;
+    color: #ffffff;
+    border: 1px solid #292929;
+    outline: none;
+    font-family: inherit;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.usuarios-formulario input:focus,
+.usuarios-formulario select:focus,
+.usuarios-formulario textarea:focus {
+    border-color: #e50909;
+    box-shadow: 0 0 0 1px #e50909;
+}
+
+.usuarios-acciones {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.usuarios-mensaje-error {
+    margin-bottom: 18px;
+    padding: 14px;
+    background: #1a0b0b;
+    border: 1px solid #5a1717;
+    color: #ff7777;
+    font-size: 13px;
+}
+
+.usuarios-pie {
+    margin-top: 25px;
+}
+
+.usuarios-pie a {
+    color: #999999;
+    font-size: 13px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.usuarios-pie a:hover {
+    color: #e50909;
+}
+
+.perfil-dato {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #101010;
+    border: 1px solid #292929;
+}
+
+.perfil-dato strong {
+    display: block;
+    margin-bottom: 7px;
+    color: #e50909;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.perfil-dato span {
+    color: #dddddd;
+    overflow-wrap: anywhere;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 700px) {
+    .usuarios-contenedor {
+        padding: 25px 12px;
+    }
+
+    .usuarios-card {
+        padding: 22px 15px;
+    }
+
+    .usuarios-card h1 {
+        font-size: 25px;
+    }
+
+    .usuarios-tabla th,
+    .usuarios-tabla td {
+        padding: 10px;
+    }
+}

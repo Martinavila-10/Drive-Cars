@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Drive Cars | Mi perfil{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/usuarios.css' %}">
+
+<main class="usuarios-contenedor">
+    <section class="usuarios-card">
+
+        <div class="usuarios-logo">DRIVE <span>CARS</span></div>
+
+        <p class="usuarios-subtitulo">MI CUENTA</p>
+        <h1>Mi perfil</h1>
+
+        <p class="usuarios-descripcion">
+            Aquí puedes consultar la información de tu cuenta de Auto Drive.
+        </p>
+
+        <div class="perfil-dato">
+            <strong>Nombre de usuario</strong>
+            <span>{{ usuario.username }}</span>
+        </div>
+
+        <div class="perfil-dato">
+            <strong>Correo electrónico</strong>
+            <span>{{ usuario.email|default:"No registrado" }}</span>
+        </div>
+
+        <div class="perfil-dato">
+            <strong>Fecha de registro</strong>
+            <span>{{ usuario.date_joined|date:"d/m/Y H:i" }}</span>
+        </div>
+
+        <div class="perfil-dato">
+            <strong>Estado de la cuenta</strong>
+            <span>
+                {% if usuario.is_active %}
+                    Activa
+                {% else %}
+                    Inactiva
+                {% endif %}
+            </span>
+        </div>
+
+        <div class="usuarios-acciones">
+            <a href="{% url 'inicio' %}" class="usuarios-boton">
+                Volver al inicio
+            </a>
+
+            <form method="post" action="{% url 'cerrar_sesion' %}"
+                  onsubmit="return confirm('¿Estás seguro de que deseas cerrar sesión?');">
+                {% csrf_token %}
+                <button type="submit" class="usuarios-boton">
+                    Cerrar sesión
+                </button>
+            </form>
+        </div>
+
+    </section>
+</main>
+
+{% endblock %}

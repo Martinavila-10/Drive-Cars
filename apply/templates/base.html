@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Drive Cars{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+    <header>
+
+        <div class="logo">DRIVE<span>CARS</span></div>
+
+        <a href="{% url 'carrito' %}"
+           class="icono-carrito"
+           title="Mi carrito"
+           aria-label="Mi carrito">
+
+            <svg viewBox="0 0 24 24"
+                 width="27"
+                 height="27"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="2"
+                 stroke-linecap="round"
+                 stroke-linejoin="round">
+
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+
+            </svg>
+
+            {% if user.is_authenticated %}
+                {% if user.carrito %}
+                    <span class="contador-carrito">
+                        {{ user.carrito.productos.count }}
+                    </span>
+                {% endif %}
+            {% endif %}
+
+        </a>
+
+        <nav>
+
+            <a href="/" class="{% if request.path == '/' %}activo{% endif %}">
+                Inicio
+            </a>
+
+            <a href="/vehiculos/" class="{% if request.path == '/vehiculos/' %}activo{% endif %}">
+                Vehículos
+            </a>
+
+            <a href="/marcas/" class="{% if request.path == '/marcas/' %}activo{% endif %}">
+                Marcas
+            </a>
+
+            <a href="/ofertas/" class="{% if request.path == '/ofertas/' %}activo{% endif %}">
+                Ofertas
+            </a>
+
+            <a href="/galeria/" class="{% if request.path == '/galeria/' %}activo{% endif %}">
+                Galería
+            </a>
+
+            <a href="/contacto/" class="{% if request.path == '/contacto/' %}activo{% endif %}">
+                Contacto
+            </a>
+
+            {% if user.is_authenticated %}
+
+                <a href="{% url 'perfil' %}">
+                    Mi perfil
+                </a>
+
+                <a href="{% url 'mis_pedidos' %}"
+                   class="{% if request.resolver_match.url_name == 'mis_pedidos' %}activo{% endif %}">
+                    Mis pedidos
+                </a>
+
+            {% else %}
+
+                <a href="/login/">
+                    Login
+                </a>
+
+            {% endif %}
+
+        </nav>
+
+    </header>
+
+    <main>
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+    <footer>
+
+        <p>
+            © 2026 Drive Cars | Todos los derechos reservados
+        </p>
+
+    </footer>
+
+    {% block extra_js %}
+    {% endblock %}
+
+</body>
+</html>
+

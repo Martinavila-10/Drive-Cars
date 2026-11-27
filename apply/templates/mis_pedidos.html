@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Mis pedidos | Drive Cars{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/mis_pedidos.css' %}">
+
+<main class="pedidos-contenedor">
+
+    <h1>Mis pedidos</h1>
+
+    <p class="pedidos-descripcion">
+        Consulta el historial de tus compras en Drive Cars.
+    </p>
+
+    {% if pedidos %}
+
+        {% for pedido in pedidos %}
+
+            <section class="pedido-card">
+
+                <div class="pedido-encabezado">
+
+                    <h3>
+                        Pedido #{{ pedido.id }}
+                    </h3>
+
+                    <span class="pedido-estado">
+                        {{ pedido.get_estado_display }}
+                    </span>
+
+                </div>
+
+                <div class="pedido-informacion">
+
+                    <p>
+                        <strong>Número de pedido:</strong>
+                        {{ pedido.numero_pedido }}
+                    </p>
+
+                    <p>
+                        <strong>Fecha:</strong>
+                        {{ pedido.fecha_pedido|date:"d/m/Y H:i" }}
+                    </p>
+
+                    <p>
+                        <strong>Total:</strong>
+                        ${{ pedido.total|floatformat:2 }}
+                    </p>
+
+                    <p>
+                        <strong>Pago:</strong>
+                        {{ pedido.get_estado_pago_display }}
+                    </p>
+
+                </div>
+
+                {% if pedido.estado_pago == 'prueba_aprobada' %}
+
+                    <a
+                        href="{% url 'recibo_pedido' pedido.id %}"
+                        class="btn-recibo"
+                    >
+                        Ver comprobante
+                    </a>
+
+                {% endif %}
+
+            </section>
+
+        {% endfor %}
+
+    {% else %}
+
+        <section class="pedidos-vacios">
+
+            <h2>Aún no tienes pedidos</h2>
+
+            <p>
+                Cuando realices una compra simulada,
+                aparecerá aquí.
+            </p>
+
+            <a
+                href="{% url 'vehiculos' %}"
+                class="btn-explorar"
+            >
+                Explorar vehículos
+            </a>
+
+        </section>
+
+    {% endif %}
+
+</main>
+
+{% endblock %}
+

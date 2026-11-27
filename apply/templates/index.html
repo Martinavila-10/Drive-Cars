@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Drive Cars | Inicio{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+
+    <div class="reproductor-flotante">
+        <div class="info-cancion">
+            <div class="disco-mini-contenedor">
+                <img id="disco" src="{% static 'img/disco.png' %}" alt="Disco" class="disco-vinil-mini">
+                <img id="portadaCancion" src="{% static 'img/portada1.jpg' %}" alt="Portada" class="portada-centro-mini">
+            </div>
+
+            <div class="detalles-cancion">
+                <span class="titulo" id="nombreCancion">Canción 1</span>
+                <span class="artista" id="nombreArtista">Mi playlist</span>
+            </div>
+        </div>
+
+        <div class="controles">
+            <button type="button" id="anterior" class="btn-control">⏮</button>
+            <button type="button" id="playPause" class="btn-control boton-play">▶</button>
+            <button type="button" id="siguiente" class="btn-control">⏭</button>
+        </div>
+
+        <div class="estado-reproduccion" id="estadoMusica">
+            ⏸ PAUSADO
+        </div>
+
+        <audio id="reproductor">
+            <source id="fuenteAudio" src="{% static 'musica/cancion1.mp3' %}" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <div class="hero-contenido">
+        <p class="subtitulo">CONCESIONARIA AUTOMOTRIZ</p>
+
+        <h1>
+            Encuentra el auto
+            <br>
+            que estás buscando.
+        </h1>
+
+        <p>
+            Descubre nuestra selección de vehículos,
+            conoce las mejores marcas y encuentra
+            grandes ofertas.
+        </p>
+
+        <a href="/vehiculos/" class="boton">VER VEHÍCULOS</a>
+    </div>
+
+</section>
+
+<section class="seccion">
+    <h2>Vehículos destacados</h2>
+    <p class="descripcion">Conoce algunos de los vehículos disponibles.</p>
+
+    <div class="tarjetas">
+
+        <div class="card">
+            <div class="imagen-auto auto1"></div>
+            <div class="card-contenido">
+                <h3>BMW M4</h3>
+                <p>Deportivo • 2025</p>
+                <strong>$1,850,000 MXN</strong>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="imagen-auto auto2"></div>
+            <div class="card-contenido">
+                <h3>Toyota Supra</h3>
+                <p>Deportivo • 2025</p>
+                <strong>$1,420,000 MXN</strong>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="imagen-auto auto3"></div>
+            <div class="card-contenido">
+                <h3>Ford Mustang</h3>
+                <p>Deportivo • 2025</p>
+                <strong>$1,050,000 MXN</strong>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/script.js' %}"></script>
+{% endblock %}

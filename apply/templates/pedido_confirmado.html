@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Compra confirmada | Drive Cars{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/pedido_confirmado.css' %}">
+
+<main class="confirmacion-contenedor">
+
+    <section class="confirmacion-card">
+
+        <div class="confirmacion-icono">✓</div>
+
+        <h1>¡Compra confirmada!</h1>
+
+        <p class="confirmacion-mensaje">
+            Tu compra se ha realizado correctamente.
+        </p>
+
+        <div class="confirmacion-detalles">
+
+            <p><strong>Número de pedido:</strong> {{ pedido.numero_pedido }}</p>
+
+            <p><strong>Fecha:</strong> {{ pedido.fecha_pedido|date:"d/m/Y H:i" }}</p>
+
+            <p><strong>Total:</strong> ${{ pedido.total|floatformat:2 }}</p>
+
+            <p><strong>Estado:</strong> Confirmado</p>
+
+        </div>
+
+        <p class="confirmacion-aviso">
+            Recuerda que esta compra es únicamente una demostración.
+            No se realizó ningún cobro real.
+        </p>
+
+        <section class="motores-confirmacion">
+
+            <div class="motores-encabezado">
+                <span class="motores-etiqueta">DRIVE CARS EXPERIENCE</span>
+                <h2>Escucha tu máquina</h2>
+                <p>Descubre el sonido de los vehículos de tu compra.</p>
+            </div>
+
+            {% for item in pedido.productos.all %}
+
+                {% if item.vehiculo.audio_motor %}
+
+                    <div class="motor-player">
+
+                        <div class="motor-player-info">
+
+                            <div class="motor-icono">
+                                <span>DC</span>
+                            </div>
+
+                            <div class="motor-datos">
+                                <span class="motor-subtitulo">ENGINE SOUND</span>
+
+                                <h3>
+                                    {{ item.vehiculo.marca }}
+                                    {{ item.vehiculo.modelo }}
+                                </h3>
+
+                                <span class="motor-anio">
+                                    {{ item.vehiculo.anio }} · DRIVE CARS
+                                </span>
+                            </div>
+
+                        </div>
+
+                        <audio
+                            class="audio-motor"
+                            preload="none">
+                            <source
+                                src="{% static item.vehiculo.audio_motor %}"
+                                type="audio/mpeg">
+                        </audio>
+
+                        <div class="motor-controles">
+
+                            <button
+                                type="button"
+                                class="motor-play"
+                                aria-label="Reproducir motor">
+                                ▶
+                            </button>
+
+                            <div class="motor-progreso-contenedor">
+
+                                <div class="motor-tiempo">
+                                    <span class="motor-actual">0:00</span>
+                                    <span class="motor-duracion">0:00</span>
+                                </div>
+
+                                <input
+                                    type="range"
+                                    class="motor-progreso"
+                                    min="0"
+                                    max="100"
+                                    value="0"
+                                    aria-label="Progreso del audio">
+
+                            </div>
+
+                            <div class="motor-volumen">
+                                <span>♫</span>
+                                <input
+                                    type="range"
+                                    class="motor-control-volumen"
+                                    min="0"
+                                    max="1"
+                                    step="0.05"
+                                    value="0.8"
+                                    aria-label="Volumen">
+                            </div>
+
+                        </div>
+
+                        <div class="motor-pie">
+                            <span>DRIVE CARS AUDIO SYSTEM</span>
+                            <span class="motor-estado">READY</span>
+                        </div>
+
+                    </div>
+
+                {% endif %}
+
+            {% empty %}
+
+                <p class="motor-sin-audio">
+                    No hay vehículos registrados en este pedido.
+                </p>
+
+            {% endfor %}
+
+        </section>
+
+        <div class="confirmacion-botones">
+
+            <a href="{% url 'recibo_pedido' pedido.id %}" class="btn-confirmacion">
+                Ver comprobante
+            </a>
+
+            <a href="{% url 'vehiculos' %}" class="btn-secundario">
+                Seguir explorando
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/motores.js' %}"></script>
+{% endblock %}

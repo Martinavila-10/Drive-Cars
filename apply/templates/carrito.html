@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Mi carrito | Drive Cars{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/carrito.css' %}">
+
+<main class="carrito-contenedor">
+
+    <h1 class="carrito-titulo">Mi carrito</h1>
+
+    {% if items %}
+
+        {% for item in items %}
+
+            <section class="carrito-producto">
+
+                <div>
+                    <h3>{{ item.vehiculo.marca }} {{ item.vehiculo.modelo }}</h3>
+
+                    <p>Año: {{ item.vehiculo.anio }}</p>
+                    <p>Precio: ${{ item.vehiculo.precio|floatformat:2 }}</p>
+                    <p>Cantidad: {{ item.cantidad }}</p>
+                    <p>Subtotal: ${{ item.subtotal|floatformat:2 }}</p>
+                </div>
+
+                <form method="POST" action="{% url 'eliminar_carrito' item.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-eliminar">
+                        Eliminar
+                    </button>
+                </form>
+
+            </section>
+
+        {% endfor %}
+
+        <section class="carrito-total">
+            <h2>Total: ${{ total|floatformat:2 }}</h2>
+
+            <a href="{% url 'finalizar_compra' %}" class="btn-carrito">
+                Continuar al pago
+            </a>
+        </section>
+
+    {% else %}
+
+        <section class="carrito-vacio">
+            <h2>Tu carrito está vacío</h2>
+            <p>Explora nuestros vehículos y encuentra el indicado.</p>
+
+            <a href="{% url 'vehiculos' %}" class="btn-carrito">
+                Ver vehículos
+            </a>
+        </section>
+
+    {% endif %}
+
+</main>
+
+{% endblock %}

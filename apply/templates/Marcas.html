@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Drive Cars | Marcas{% endblock %}
+
+{% block content %}
+
+<section class="titulo-pagina">
+    <p>LAS MEJORES MARCAS</p>
+    <h1>Marcas disponibles</h1>
+    <span>Conoce las marcas que encontrarás en Drive Cars.</span>
+</section>
+
+<section class="seccion">
+    <div class="marcas">
+
+        {% for marca in marcas %}
+        <div class="marca">
+            <h2>{{ marca }}</h2>
+
+            <p>
+                Descubre los vehículos de la marca {{ marca }}
+                disponibles en Drive Cars.
+            </p>
+
+            <a href="/vehiculos/">VER VEHÍCULOS</a>
+        </div>
+        {% empty %}
+        <p>Aún no hay marcas registradas en el catálogo.</p>
+        {% endfor %}
+
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/script.js' %}"></script>
+{% endblock %}

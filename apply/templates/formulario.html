@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Drive Cars | Formulario{% endblock %}
+
+{% block content %}
+
+<section class="seccion">
+
+    <h1 class="titulo-pagina">Formulario</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit" class="boton">Enviar</button>
+    </form>
+
+    {% if mensaje %}
+        <div class="mensaje-exito">
+            <h3>{{ mensaje }}</h3>
+        </div>
+    {% endif %}
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Drive Cars | Ofertas{% endblock %}
+
+{% block content %}
+
+<section class="titulo-pagina">
+    <p>OPORTUNIDADES</p>
+    <h1>Ofertas especiales</h1>
+    <span>Encuentra grandes oportunidades en vehículos seleccionados.</span>
+</section>
+
+<section class="seccion">
+    <div class="tarjetas">
+
+        {% for vehiculo in vehiculos %}
+        <div class="card oferta">
+
+            <div class="imagen-auto">
+                {% if vehiculo.imagen %}
+                <img
+                    src="{% static vehiculo.imagen %}"
+                    alt="{{ vehiculo.marca }} {{ vehiculo.modelo }}"
+                    style="width:100%; height:100%; object-fit:cover;"
+                >
+                {% endif %}
+            </div>
+
+            <div class="card-contenido">
+                <small>OFERTA ESPECIAL</small>
+
+                <h3>{{ vehiculo.marca }} {{ vehiculo.modelo }}</h3>
+
+                <p>{{ vehiculo.anio }} • {{ vehiculo.categoria }}</p>
+
+                {% if vehiculo.precio_anterior %}
+                <p class="precio-anterior">
+                    ${{ vehiculo.precio_anterior }} MXN
+                </p>
+                {% endif %}
+
+                <strong>${{ vehiculo.precio }} MXN</strong>
+
+                <p>{{ vehiculo.descripcion }}</p>
+            </div>
+
+        </div>
+        {% empty %}
+        <p>Aún no hay vehículos en oferta. ¡Vuelve pronto!</p>
+        {% endfor %}
+
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/script.js' %}"></script>
+{% endblock %}

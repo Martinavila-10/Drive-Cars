@@ -1,0 +1,322 @@
+.confirmacion-contenedor {
+    min-height: 75vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    color: #fff;
+}
+
+.confirmacion-card {
+    width: 100%;
+    max-width: 750px;
+    padding: 40px;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.confirmacion-icono {
+    width: 75px;
+    height: 75px;
+    margin: 0 auto 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #16803c;
+    color: white;
+    border-radius: 50%;
+    font-size: 45px;
+}
+
+.confirmacion-card h1 {
+    margin-bottom: 15px;
+}
+
+.confirmacion-mensaje {
+    color: #bbb;
+    margin-bottom: 30px;
+}
+
+.confirmacion-detalles {
+    padding: 20px;
+    background: #252525;
+    border-radius: 10px;
+    text-align: left;
+    line-height: 2;
+}
+
+.confirmacion-aviso {
+    color: #ffb0b0;
+    font-size: 13px;
+    margin: 22px 0;
+    line-height: 1.5;
+}
+
+.confirmacion-botones {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.btn-confirmacion,
+.btn-secundario {
+    padding: 12px 20px;
+    border-radius: 7px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-confirmacion {
+    background: #e50914;
+    color: white;
+}
+
+.btn-confirmacion:hover {
+    background: #b80710;
+}
+
+.btn-secundario {
+    background: #444;
+    color: white;
+}
+
+.btn-secundario:hover {
+    background: #555;
+}
+
+/* SECCIÓN DE MOTORES */
+
+.motores-confirmacion {
+    margin-top: 30px;
+    padding: 25px;
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 14px;
+    text-align: left;
+}
+
+.motores-encabezado {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.motores-encabezado h2 {
+    color: #fff;
+    font-size: 23px;
+    margin-bottom: 8px;
+}
+
+.motores-etiqueta {
+    color: #e50914;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+/* TARJETA DEL REPRODUCTOR */
+
+.motor-player {
+    padding: 22px;
+    margin-bottom: 16px;
+    background: linear-gradient(145deg, #242424, #151515);
+    border: 1px solid #383838;
+    border-left: 4px solid #e50914;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .3);
+}
+
+.motor-player-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+.motor-icono {
+    width: 55px;
+    height: 55px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e50914;
+    color: white;
+    border-radius: 10px;
+    font-size: 25px;
+}
+
+.motor-datos {
+    flex: 1;
+    min-width: 0;
+}
+
+.motor-datos h3 {
+    color: #fff;
+    font-size: 18px;
+    margin: 0 0 5px;
+}
+
+.motor-subtitulo {
+    color: #999;
+    font-size: 12px;
+}
+
+.motor-anio {
+    color: #e50914;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* OCULTAR REPRODUCTOR NATIVO */
+
+.audio-motor {
+    display: none;
+}
+
+/* CONTROLES */
+
+.motor-controles {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.motor-play {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    border: none;
+    border-radius: 50%;
+    background: #e50914;
+    color: white;
+    font-size: 19px;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.motor-play:hover {
+    background: #ff2530;
+    transform: scale(1.07);
+}
+
+.motor-progreso-contenedor {
+    flex: 1;
+    min-width: 0;
+}
+
+.motor-tiempo {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    color: #aaa;
+    font-size: 11px;
+    font-variant-numeric: tabular-nums;
+}
+
+.motor-progreso {
+    width: 100%;
+    height: 5px;
+    appearance: none;
+    -webkit-appearance: none;
+    background: #444;
+    border-radius: 10px;
+    outline: none;
+    cursor: pointer;
+}
+
+.motor-progreso::-webkit-slider-thumb {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 13px;
+    height: 13px;
+    background: #e50914;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.motor-progreso::-moz-range-thumb {
+    width: 13px;
+    height: 13px;
+    background: #e50914;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* VOLUMEN */
+
+.motor-volumen {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #aaa;
+}
+
+.motor-volumen span {
+    font-size: 17px;
+}
+
+.motor-control-volumen {
+    width: 65px;
+    accent-color: #e50914;
+    cursor: pointer;
+}
+
+/* ESTADO DEL MOTOR */
+
+.motor-pie {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 17px;
+    padding-top: 12px;
+    border-top: 1px solid #333;
+}
+
+.motor-estado {
+    color: #888;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.motor-sin-audio {
+    padding: 15px;
+    color: #aaa;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 600px) {
+    .confirmacion-card {
+        padding: 25px 18px;
+    }
+
+    .confirmacion-botones {
+        flex-direction: column;
+    }
+
+    .motores-confirmacion {
+        padding: 15px;
+    }
+
+    .motor-player {
+        padding: 16px;
+    }
+
+    .motor-controles {
+        flex-wrap: wrap;
+    }
+
+    .motor-progreso-contenedor {
+        min-width: 65%;
+    }
+
+    .motor-volumen {
+        margin-left: auto;
+    }
+}

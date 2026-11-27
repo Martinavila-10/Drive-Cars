@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Comprobante de compra | Drive Cars{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/recibo.css' %}">
+
+<main class="recibo-contenedor">
+
+    <section class="recibo-documento">
+
+        <header class="recibo-encabezado">
+
+            <h1>
+                DRIVE <span>CARS</span>
+            </h1>
+
+            <h2>Comprobante de compra</h2>
+
+            <p>Gracias por elegir Drive Cars</p>
+
+        </header>
+
+        <hr>
+
+        <section class="recibo-informacion">
+
+            <p>
+                <strong>Número de pedido:</strong>
+                {{ pedido.numero_pedido }}
+            </p>
+
+            <p>
+                <strong>Fecha:</strong>
+                {{ pedido.fecha_pedido|date:"d/m/Y H:i" }}
+            </p>
+
+            <p>
+                <strong>Cliente:</strong>
+                {{ pedido.usuario.username }}
+            </p>
+
+            <p>
+                <strong>Estado:</strong>
+                {{ pedido.get_estado_display }}
+            </p>
+
+        </section>
+
+        <h3 class="recibo-subtitulo">
+            Detalle de los vehículos
+        </h3>
+
+        <div class="recibo-tabla-contenedor">
+
+            <table class="recibo-tabla">
+
+                <thead>
+                    <tr>
+                        <th>Vehículo</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for item in pedido.productos.all %}
+
+                    <tr>
+
+                        <td>
+                            {{ item.vehiculo.marca }}
+                            {{ item.vehiculo.modelo }}
+                        </td>
+
+                        <td>
+                            {{ item.cantidad }}
+                        </td>
+
+                        <td>
+                            ${{ item.precio_unitario|floatformat:2 }}
+                        </td>
+
+                        <td>
+                            ${{ item.subtotal|floatformat:2 }}
+                        </td>
+
+                    </tr>
+
+                    {% empty %}
+
+                    <tr>
+                        <td colspan="4">
+                            No hay vehículos registrados en este pedido.
+                        </td>
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <div class="recibo-total">
+
+            <h2>
+                Total: ${{ pedido.total|floatformat:2 }}
+            </h2>
+
+        </div>
+
+        <div class="recibo-aviso">
+
+            Este comprobante corresponde a una compra simulada.
+
+        </div>
+
+        <div class="recibo-botones">
+
+            <button
+                type="button"
+                onclick="window.print()"
+                class="btn-imprimir"
+            >
+                Imprimir comprobante
+            </button>
+
+            <a
+                href="{% url 'vehiculos' %}"
+                class="btn-regresar"
+            >
+                Volver a vehículos
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+{% endblock %}

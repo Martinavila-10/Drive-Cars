@@ -1,0 +1,57 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar usuario | Auto Drive</title>
+    <link rel="stylesheet" href="{% static 'css/usuarios.css' %}">
+</head>
+<body>
+    <main class="usuarios-contenedor">
+        <section class="usuarios-card">
+
+            <div class="usuarios-logo">AUTO <span>DRIVE</span></div>
+
+            <p class="usuarios-subtitulo">PANEL DE ADMINISTRACIÓN</p>
+            <h1>Eliminar usuario</h1>
+
+            <p class="usuarios-descripcion">
+                Estás a punto de eliminar la cuenta:
+            </p>
+
+            <div class="perfil-dato">
+                <strong>Nombre de usuario</strong>
+                <span>{{ usuario.username }}</span>
+            </div>
+
+            <div class="usuarios-mensaje-error">
+                Esta acción es permanente. Una vez eliminada la cuenta,
+                no podrás recuperar sus datos desde esta página.
+            </div>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="usuarios-acciones">
+                    <button type="submit" class="usuarios-boton">
+                        Sí, eliminar usuario
+                    </button>
+
+                    <a href="{% url 'gestionar_usuarios' %}"
+                       class="usuarios-boton usuarios-boton-secundario">
+                        Cancelar
+                    </a>
+                </div>
+            </form>
+
+            <div class="usuarios-pie">
+                <a href="{% url 'inicio' %}">← Volver al inicio</a>
+            </div>
+
+        </section>
+    </main>
+</body>
+</html>
+

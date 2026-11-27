@@ -1,0 +1,85 @@
+
+.pedidos-contenedor {
+    max-width: 1050px;
+    margin: 50px auto;
+    padding: 25px;
+    color: #fff;
+}
+
+.pedidos-contenedor h1 {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.pedidos-descripcion {
+    color: #aaa;
+    margin-bottom: 30px;
+}
+
+.pedido-card {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 20px;
+}
+
+.pedido-encabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 1px solid #444;
+    padding-bottom: 15px;
+    margin-bottom: 18px;
+}
+
+.pedido-estado {
+    color: #fff;
+    background: #16803c;
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+}
+
+.pedido-informacion {
+    line-height: 2;
+    color: #ccc;
+    margin-bottom: 20px;
+    overflow-wrap: anywhere;
+}
+
+.btn-recibo,
+.btn-explorar {
+    display: inline-block;
+    padding: 12px 20px;
+    background: #e50914;
+    color: white;
+    text-decoration: none;
+    border-radius: 7px;
+    font-weight: bold;
+}
+
+.btn-recibo:hover,
+.btn-explorar:hover {
+    background: #b80710;
+}
+
+.pedidos-vacios {
+    text-align: center;
+    padding: 55px 20px;
+    background: #1a1a1a;
+    border-radius: 12px;
+}
+
+.pedidos-vacios p {
+    color: #aaa;
+    margin: 15px 0 25px;
+}
+
+@media (max-width: 600px) {
+    .pedido-encabezado {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}

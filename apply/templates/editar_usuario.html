@@ -1,0 +1,73 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar usuario | Auto Drive</title>
+    <link rel="stylesheet" href="{% static 'css/usuarios.css' %}">
+</head>
+<body>
+    <main class="usuarios-contenedor">
+        <section class="usuarios-card">
+
+            <div class="usuarios-logo">AUTO <span>DRIVE</span></div>
+
+            <p class="usuarios-subtitulo">PANEL DE ADMINISTRACIÓN</p>
+            <h1>Editar usuario</h1>
+
+            <p class="usuarios-descripcion">
+                Actualiza los datos de la cuenta seleccionada.
+            </p>
+
+            {% if error %}
+                <div class="usuarios-mensaje-error">
+                    {{ error }}
+                </div>
+            {% endif %}
+
+            <form method="POST" class="usuarios-formulario">
+                {% csrf_token %}
+
+                <label for="username">Nombre de usuario</label>
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    value="{{ usuario.username }}"
+                    autocomplete="username"
+                    required
+                >
+
+                <label for="email">Correo electrónico</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value="{{ usuario.email }}"
+                    autocomplete="email"
+                    required
+                >
+
+                <div class="usuarios-acciones">
+                    <button type="submit" class="usuarios-boton">
+                        Guardar cambios
+                    </button>
+
+                    <a href="{% url 'gestionar_usuarios' %}"
+                       class="usuarios-boton usuarios-boton-secundario">
+                        Cancelar
+                    </a>
+                </div>
+            </form>
+
+            <div class="usuarios-pie">
+                <a href="{% url 'inicio' %}">← Volver al inicio</a>
+            </div>
+
+        </section>
+    </main>
+</body>
+</html>
+

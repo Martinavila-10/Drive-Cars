@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Drive Cars | Galería{% endblock %}
+
+{% block content %}
+
+<section class="titulo-pagina">
+    <p>DRIVE CARS</p>
+    <h1>Galería</h1>
+    <span>Conoce nuestros vehículos registrados.</span>
+</section>
+
+<section class="seccion">
+    <div class="galeria">
+
+        {% for vehiculo in vehiculos %}
+        <div class="foto">
+
+            {% if vehiculo.imagen %}
+            <img
+                src="{% static vehiculo.imagen %}"
+                alt="{{ vehiculo.marca }} {{ vehiculo.modelo }}"
+            >
+            {% endif %}
+
+            <div class="foto-info">
+                <h3>{{ vehiculo.marca }} {{ vehiculo.modelo }}</h3>
+                <p>{{ vehiculo.categoria }}</p>
+            </div>
+
+        </div>
+        {% empty %}
+        <p>Aún no hay vehículos registrados en la galería.</p>
+        {% endfor %}
+
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/script.js' %}"></script>
+{% endblock %}
